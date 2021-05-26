@@ -3,7 +3,7 @@ const app = express()
 const ioServer = require('http').createServer(app)
 const io = require('socket.io')(ioServer, {cors: {origin: '*'}})
 
-const ioPort = 5
+const ioPort = 5555
 
 io.on("connect", client => {
 
