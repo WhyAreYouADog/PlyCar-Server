@@ -81,7 +81,7 @@ export default {
   position: fixed;
   right: 0;
   top: 0;
-  width: 500px;
+  width: 700px;
   height: 100vh;
   background-color: black;
   visibility: hidden;
