@@ -3,13 +3,11 @@ console.clear()
 const express = require('express')
 const app = express()
 
+app.use(express.static('./dist'));
+
+module.exports = app
+
 //init the udp Server
 const ioServer = require('./js/ioServer')
 const udpServer = require('./js/udpServer')
 const tcpServer = require('./js/tcpServer')
-
-app.use(express.static('./dist'));
-
-app.listen(80,()=>{
-    
-})
