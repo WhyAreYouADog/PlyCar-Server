@@ -1,6 +1,4 @@
-const { get } = require('http')
 const net = require('net')
-const { emit } = require('process')
 const tcpServer = net.createServer()
 const io = require('./ioServer')
 const tcpPort = 5050
@@ -12,7 +10,7 @@ tcpServer.on('connection',(socket)=>{
     tcpSocket = socket
 })
 
-io.on("connection" ,async (client)=>{
+io.on("connection" ,(client)=>{
 
     client.on("car-control", (data)=>{
         if(tcpSocket){
