@@ -1,0 +1,42 @@
+/* all* */
+*{
+  margin: 0%;
+  padding: 0%;
+  overflow: hidden;
+}
+
+/*  shell.js  */
+.terminalWrapper {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 700px;
+    height: 100vh;
+    background-color: black;
+    visibility: hidden;
+  }
+  #terminal {
+    width: 100%;
+    height: 100%;
+  }
+  #terminalButton{
+    border-style: none;
+    background-color: #ffffff;
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+  #terminalImg{
+    width: 37px;
+  }
+  /* stream.js */
+  #display{
+    width: 100%;
+    height: 100vh;
+  }
