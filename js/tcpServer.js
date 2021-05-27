@@ -4,14 +4,13 @@ const io = require('./ioServer')
 const tcpPort = 5050
 
 var currentControls = {}
-var tcpSocket 
+var tcpSocket
 
 tcpServer.on('connection',(socket)=>{
     tcpSocket = socket
 })
 
 io.on("connection" ,(client)=>{
-
     client.on("car-control", (data)=>{
         if(tcpSocket){
             if (JSON.stringify(currentControls) != JSON.stringify(data)) {
@@ -30,7 +29,7 @@ tcpServer.listen(tcpPort,()=>{
 
 /*
 if (JSON.stringify(currentControls) != JSON.stringify(data)) {
-            
+
             currentControls = data
         }
 */
