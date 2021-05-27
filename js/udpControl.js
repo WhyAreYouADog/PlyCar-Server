@@ -1,7 +1,7 @@
 const io = require('./ioServer')
 const ucon = require("./ucon")
 
-const server = ucon.server("0.0.0.0", 4000)
+const server = ucon.server("0.0.0.0", 6000)
 var currentControls = {}
 
 io.on("connection" ,(client)=>{

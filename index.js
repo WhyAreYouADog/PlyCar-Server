@@ -10,6 +10,4 @@ module.exports = app
 //init the udp Server
 const ioServer = require('./js/ioServer')
 const udpServer = require('./js/udpServer')
-//const tcpServer = require('./js/tcpServer')
-
 const controlServer = require("./js/udpControl")
