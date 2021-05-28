@@ -1,4 +1,4 @@
-var controls = {
+$var controls = {
     axis: 0,
     pan: 0,
     tilt: 0,
@@ -46,7 +46,7 @@ function loop(){
     let gamepad = checkGamepads()
 
     //console.log(gamepad.axes)[0]
-    controls.axis = exponentiate(gamepad.axes[0]) 
+    controls.axis = exponentiate(gamepad.axes[0]) *-1 
     controls.pan = exponentiate(gamepad.axes[2]) *-1
     controls.tilt = exponentiate(gamepad.axes[3])
     controls.speed =  gamepad.buttons[7].value
