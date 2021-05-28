@@ -9,7 +9,7 @@ var controls = {
 const pressed = {
     up: false,
     down: false
-  }
+}
 
 function checkGamepads(){
     let gp = false
@@ -55,6 +55,7 @@ function loop(){
         pressed.up = true
         if(controls.gear + 1 < 6){
             controls.gear += 1
+            gear.innerHTML = controls.gear
         }
     }
     else if (gamepad.buttons[12].value == 0) {
@@ -65,6 +66,7 @@ function loop(){
         pressed.down = true
         if(controls.gear - 1 > 0){
             controls.gear -= 1
+            gear.innerHTML = controls.gear
         }
     }
     else if (gamepad.buttons[13].value == 0) {
@@ -76,6 +78,11 @@ function loop(){
 
     socket.emit("car-control", controls)
 } 
+
+setTimeout(() => {
+    var gear = document.getElementById("gear")
+    gear.innerHTML = "1";
+}, 500);
 
 window.addEventListener("gamepadconnected", (event) =>{
     console.log("connected")
