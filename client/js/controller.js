@@ -1,14 +1,17 @@
-$var controls = {
+var controls = {
     axis: 0,
     pan: 0,
     tilt: 0,
     speed: 0,
-    gear: 1
+    gear: 1,
+    bitrate: 0
 }
 
 const pressed = {
-    up: false,
-    down: false
+    gearUp: false,
+    gearDown: false,
+    bitrateUp: false,
+    bitrateDown: false
 }
 
 function checkGamepads(){
@@ -51,28 +54,49 @@ function loop(){
     controls.tilt = exponentiate(gamepad.axes[3])
     controls.speed =  gamepad.buttons[7].value
 
-    if(gamepad.buttons[12].value == 1 && pressed.up == false){
-        pressed.up = true
+    //Gear Up
+    if(gamepad.buttons[5].value == 1 && pressed.gearUp == false){
+        pressed.gearUp = true
         if(controls.gear + 1 < 6){
             controls.gear += 1
             gear.innerHTML = controls.gear
         }
     }
-    else if (gamepad.buttons[12].value == 0) {
-        pressed.up = false
+    else if (gamepad.buttons[5].value == 0) {
+        pressed.gearUp = false
     }
-
-    if(gamepad.buttons[13].value == 1 && pressed.down == false){
-        pressed.down = true
+    //Gear Down
+    if(gamepad.buttons[4].value == 1 && pressed.gearDown == false){
+        pressed.gearDown = true
         if(controls.gear - 1 > 0){
             controls.gear -= 1
             gear.innerHTML = controls.gear
         }
     }
-    else if (gamepad.buttons[13].value == 0) {
-        pressed.down = false
+    else if (gamepad.buttons[4].value == 0) {
+        pressed.gearDown = false
     }
 
+    //Bitrate UP
+    if(gamepad.buttons[12].value == 1 && pressed.bitrateUp == false){
+        pressed.bitrateUp = true
+        socket.emit("bitrate",{status: "up"})
+        controls.bitrate += 1
+        bitrate.innerHTML = controls.bitrate
+    }
+    else if (gamepad.buttons[12].value == 0) {
+        pressed.bitrateUp = false
+    }
+    //Bitrate Down
+    if(gamepad.buttons[13].value == 1 && pressed.bitrateDown == false){
+        pressed.bitrateDown = true
+        socket.emit("bitrate",{status: "down"})
+        controls.bitrate -= 1
+        bitrate.innerHTML = controls.bitrate
+    }
+    else if (gamepad.buttons[13].value == 0) {
+        pressed.bitrateDown = false
+    }
 
     window.requestAnimationFrame(loop)
 
@@ -81,7 +105,9 @@ function loop(){
 
 setTimeout(() => {
     var gear = document.getElementById("gear")
-    gear.innerHTML = "1";
+    var bitrate = document.getElementById("bitrate")
+    gear.innerHTML = controls.gear
+    bitrate.innerHTML = controls.bitrate
 }, 500);
 
 window.addEventListener("gamepadconnected", (event) =>{
