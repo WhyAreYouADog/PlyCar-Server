@@ -11,7 +11,7 @@ var currentControls = {}
 app.use(express.static('./client'));
 
 ucon.on("frame", (data)=>{
-    io.socket.emit("frame",data.toString('base64'))
+    io.sockets.emit("frame",data)
 })
 
 io.on("connect", client => {
