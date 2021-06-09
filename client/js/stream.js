@@ -3,7 +3,6 @@ setTimeout(() => {
 }, 100);
 
 socket.on("frame", (data)=>{
-    console.log(data);
     display.src = "data:image/jpg;base64," + data
 
 })
