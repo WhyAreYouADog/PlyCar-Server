@@ -55,7 +55,7 @@ function createServer(interface, port) {
             data: data,
         }))
 
-        console.log(`Sending to: ${client.address}:${client.port}`);
+        //console.log(`Sending to: ${client.address}:${client.port}`);
 
         server.send(packet, client.port, client.address, err => {
             if(err) {
