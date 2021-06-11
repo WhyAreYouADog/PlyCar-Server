@@ -50,8 +50,8 @@ function loop(){
 
     //console.log(gamepad.axes)[0]
     controls.axis = exponentiate(gamepad.axes[0]) *-1 
-    controls.pan = exponentiate(gamepad.axes[2]) *-1
-    controls.tilt = exponentiate(gamepad.axes[3])
+    controls.pan = round(gamepad.axes[2] *-1)
+    controls.tilt = round(gamepad.axes[3])
     controls.speed =  gamepad.buttons[7].value
 
     //Gear Up
