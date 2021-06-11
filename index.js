@@ -14,6 +14,10 @@ ucon.on("frame", (data)=>{
     io.sockets.emit("frame",data)
 })
 
+ucon.on("telemetry", data => {
+    io.sockets.emit("telemetry", data)
+})
+
 io.on("connect", client => {
 
     console.log(client.client.conn.remoteAddress);

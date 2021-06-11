@@ -82,7 +82,6 @@ function loop(){
         pressed.bitrateUp = true
         socket.emit("bitrate",{status: "up"})
         controls.bitrate += 1
-        bitrate.innerHTML = controls.bitrate
     }
     else if (gamepad.buttons[12].value == 0) {
         pressed.bitrateUp = false
@@ -92,7 +91,6 @@ function loop(){
         pressed.bitrateDown = true
         socket.emit("bitrate",{status: "down"})
         controls.bitrate -= 1
-        bitrate.innerHTML = controls.bitrate
     }
     else if (gamepad.buttons[13].value == 0) {
         pressed.bitrateDown = false
@@ -105,12 +103,18 @@ function loop(){
 
 setTimeout(() => {
     var gear = document.getElementById("gear")
-    var bitrate = document.getElementById("bitrate")
+    var conn = document.getElementById("connection")
     gear.innerHTML = controls.gear
-    bitrate.innerHTML = controls.bitrate
+    conn.innerHTML = "-"
 }, 500);
 
 window.addEventListener("gamepadconnected", (event) =>{
     console.log("connected")
     window.requestAnimationFrame(loop)
+})
+
+socket.on("telemetry", (data)=>{
+    console.log(data.connection);
+    var conn = document.getElementById("connection")
+    conn.innerHTML = data.connection.signalSimple
 })

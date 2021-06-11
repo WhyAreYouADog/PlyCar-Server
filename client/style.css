@@ -48,7 +48,7 @@
   background-color: #ffffff;
   border-radius: 3px;
   width: 50px;
-  height: 50px;
+  height: 90px;
   position: absolute;
   left: 0;
   top: 0;
@@ -60,20 +60,7 @@
   text-align: center;
   margin-top: 5px;
 }
-#bitrateDiv{
-  border-style: none;
-  background-color: #ffffff;
-  border-radius: 3px;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 1;
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-#bitrate{
+#connection{
   text-align: center;
-  margin-top: 5px;
+  margin-top: 10px;
 }
