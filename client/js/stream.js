@@ -1,8 +1,14 @@
+function initateStream() {
+    window.player = new Player({ useWorker: true, webgl: 'auto', size: { width: 400, height: 300 } })
+    const playerElement = document.getElementById('display')
+    playerElement.appendChild(window.player.canvas)
+
+    socket.on("video", data => {
+        //console.log(String(data).length);
+        window.player.decode(new Uint8Array(data));
+    })
+}
+
 setTimeout(() => {
-    var display = document.getElementById("display")
+    initateStream()
 }, 100);
-
-socket.on("frame", (data)=>{
-    display.src = "data:image/jpg;base64," + data
-
-})

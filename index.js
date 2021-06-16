@@ -1,12 +1,16 @@
 const express = require('express')
 const app = express()
 const ioServer = require('http').createServer(app)
+const Split = require("stream-split")
 
 const ucon = require("./js/ucon").server("0.0.0.0", 6000)
 const io = require('socket.io')(ioServer, {cors: {origin: '*'}})
 
 const ioPort = 8080
 var currentControls = {}
+
+const NALSeparator = new Buffer.from([0, 0, 0, 1])
+const NALSplitter = new Split(NALSeparator)
 
 app.use(express.static('./client'));
 
@@ -16,6 +20,14 @@ ucon.on("frame", (data)=>{
 
 ucon.on("telemetry", data => {
     io.sockets.emit("telemetry", data)
+})
+
+ucon.on("ucon-raw", data => {
+    NALSplitter.write(data)
+})
+
+NALSplitter.on('data', (data) => {
+    io.sockets.emit("video", data)
 })
 
 io.on("connect", client => {

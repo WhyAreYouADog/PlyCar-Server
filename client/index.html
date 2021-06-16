@@ -13,6 +13,11 @@
         const socket = io()
         console.log("Icons made by Freepik https://www.flaticon.com/authors/freepik");
     </script>
+
+    <script src='Decoder.js'></script>
+    <script src='YUVCanvas.js'></script>
+    <script src='Player.js'></script>
+
     <script src="./js/controller.js"></script>
     <script src="./js/shell.js"></script>
     <script src="./js/stream.js"></script>
@@ -22,7 +27,7 @@
     <title>PlyCar</title>
 </head>
 <body>
-    <img id="display" alt="No Video icoming">
+    <div id="display"></div>
     <div id="gearDiv">
         <h1 id="gear"></h1>
         <h1 id="connection"></h1>

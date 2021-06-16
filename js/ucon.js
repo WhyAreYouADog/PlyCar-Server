@@ -24,12 +24,15 @@ function createServer(interface, port) {
     server.on("message", (buffer, info) => {
         const data = parse(buffer)
 
-        if (data != undefined) {
+        if (data) {
             const isRegister = registerClient(data, info)
 
             if (!isRegister) {
                 events.emit(data.channel, data.data)
             }
+        }
+        else {
+            events.emit("ucon-raw", buffer)
         }
     })
 
@@ -37,7 +40,7 @@ function createServer(interface, port) {
         var address = server.address();
         var port = address.port;
         
-        console.log(`udp server online at ${interface}:${port}`);
+        console.log(`[ucon] Online on port ${port}`);
 
         //initializing auto disconnect
         autoDisconnect(1500)
@@ -97,7 +100,7 @@ function createServer(interface, port) {
                 });
 
                 dispatch("ucon-confirm", null, client)
-                console.log(`Client connected: ${client.address}:${client.port}`);
+                console.log(`[ucon] Client connected: ${client.address}:${client.port}`);
             }
 
             isReg = true
@@ -111,7 +114,7 @@ function createServer(interface, port) {
             clients.forEach(client =>{
                 if (Date.now() - client.lastSignal > ms) {
                     clients.splice(clients.indexOf(client), 1)
-                    console.log(`Client timeout: ${client.address}:${client.port}`);
+                    console.log(`[ucon] Client timeout: ${client.address}:${client.port}`);
                 }
             })
         }, ms);
