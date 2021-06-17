@@ -3,6 +3,7 @@ var controls = {
     pan: 0,
     tilt: 0,
     speed: 0,
+    reverse: 0,
     gear: 1,
     bitrate: 0
 }
@@ -52,7 +53,8 @@ function loop(){
     controls.axis = exponentiate(gamepad.axes[0]) *-1 
     controls.pan = round(gamepad.axes[2] *-1)
     controls.tilt = round(gamepad.axes[3])
-    controls.speed =  gamepad.buttons[7].value
+    controls.reverse = gamepad.buttons[6].value
+    controls.speed = gamepad.buttons[7].value
 
     //Gear Up
     if(gamepad.buttons[5].value == 1 && pressed.gearUp == false){
