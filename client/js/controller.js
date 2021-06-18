@@ -50,7 +50,7 @@ function loop(){
     let gamepad = checkGamepads()
 
     //console.log(gamepad.axes)[0]
-    controls.axis = exponentiate(gamepad.axes[0]) *-1 
+    controls.axis = round(gamepad.axes[0]) *-1 
     controls.pan = round(gamepad.axes[2] *-1)
     controls.tilt = round(gamepad.axes[3])
     controls.reverse = gamepad.buttons[6].value
